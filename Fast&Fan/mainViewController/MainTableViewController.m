@@ -29,6 +29,7 @@
     [self.tableView setBackgroundColor:BGColor];
     [self setupNavBar];
     
+    [self.navigationController.navigationBar setTintColor:[UIColor redColor]];
     
 }
 - (void)setupNavBar

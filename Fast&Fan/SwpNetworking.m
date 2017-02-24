@@ -18,32 +18,32 @@
 
 @implementation SwpNetworking
 
-+ (void)getCurrentNetWorkStateHandel:(void (^)(MBGNetworkReachabilityStatus))handle
-{
-    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
-    
-    [mgr startMonitoring];
-    
-    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown: // 未知网络
-                handle(MBGNetworkReachabilityStatusUnknown);
-                break;
-                
-            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
-                handle(MBGNetworkReachabilityStatusNotReachable);
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
-                handle(MBGNetworkReachabilityStatusReachableViaWWAN);
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                handle(MBGNetworkReachabilityStatusReachableViaWiFi);
-                break;
-        }
-    }];
-}
+//+ (void)getCurrentNetWorkStateHandel:(void (^)(MBGNetworkReachabilityStatus))handle
+//{
+//    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+//    
+//    [mgr startMonitoring];
+//    
+//    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        switch (status) {
+//            case AFNetworkReachabilityStatusUnknown: // 未知网络
+//                handle(MBGNetworkReachabilityStatusUnknown);
+//                break;
+//                
+//            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+//                handle(MBGNetworkReachabilityStatusNotReachable);
+//                break;
+//                
+//            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+//                handle(MBGNetworkReachabilityStatusReachableViaWWAN);
+//                break;
+//                
+//            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+//                handle(MBGNetworkReachabilityStatusReachableViaWiFi);
+//                break;
+//        }
+//    }];
+//}
 
 #pragma mark - SwpNetworking Tool Methods
 /*!

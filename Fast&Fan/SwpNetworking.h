@@ -112,7 +112,7 @@ typedef void(^SwpNetworkingProgress)(NSProgress * _Nonnull progress) ;
 //上传视频和图片的方法
 + (void)swpPOSTAddWithFiles:(NSString *)URLString parameters:(NSDictionary *)parameters fileNames:(NSArray *)fileNames fileDatas:(NSArray *)fileDatas  fileTypes:(NSArray*)types swpNetworkingSuccess:(SwpNetworkingSuccessHandle)swpNetworkingSuccess progress:(SwpNetworkingProgress)progress swpNetworkingError:(SwpNetworkingErrorHandle)swpNetworkingError ;
 //获得当前网络状态
-+ (void)getCurrentNetWorkStateHandel:(void (^)(MBGNetworkReachabilityStatus))handle;
+//+ (void)getCurrentNetWorkStateHandel:(void (^)(MBGNetworkReachabilityStatus))handle;
 + (void)endURLRequest;
 @end
 

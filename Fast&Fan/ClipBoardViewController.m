@@ -8,7 +8,7 @@
 
 #import "ClipBoardViewController.h"
 #import "ClipCell.h"
-#define khiscount  6
+#define khiscount  10
 @interface ClipBoardViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *historyArr;
 @property (weak, nonatomic) IBOutlet UITextField *textfeild;
@@ -18,44 +18,59 @@
 
 @implementation ClipBoardViewController
 - (IBAction)addbtndidclick:(UIButton *)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if (![self.textfeild.text isEqualToString:@""]) {
+        
+        pasteboard.string = self.textfeild.text;
+    }
+    [self.textfeild endEditing:YES];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults =[[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
     self.historyArr  =[[defaults arrayForKey:@"cliphistory"]mutableCopy];
     MBGLog(@"%@",self.historyArr);
     self.view.backgroundColor = BGColor;
     self.tableview.backgroundColor = BGColor;
     [self.tableview registerNib:[UINib nibWithNibName:@"ClipCell" bundle:nil] forCellReuseIdentifier:@"ClipCell"];
     [self setupNavBar];
+    [self.tableview reloadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkoutClipboard) name:UIPasteboardChangedNotification object:nil];
+
 }
 - (void)setupNavBar
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 44)];
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:20];
+    label.font = [UIFont systemFontOfSize:18];
     label.text = @"ClipBoard";
     label.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = label;
+    [label setTextColor:[UIColor redColor]];
     
     
     UIButton *goBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     goBackBtn.frame = CGRectMake(0, 0, 40, 40);
     goBackBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [goBackBtn setImage:[UIImage imageNamed:@"wish_back"] forState:UIControlStateNormal];
+    [goBackBtn setImage:[UIImage imageNamed:@"go_back"] forState:UIControlStateNormal];
     UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc] initWithCustomView:goBackBtn];
-    [goBackBtn addTarget:self action:@selector(go_back) forControlEvents:UIControlEventTouchUpInside];
+    [goBackBtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
                                        initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                        target:nil action:nil];
+    [goBackBtn setTintColor:[UIColor redColor]];
     negativeSpacer.width = -15;
     self.navigationItem.leftBarButtonItems = @[negativeSpacer,backBarBtn];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor redColor]];
 }
-
+-(void)goback{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)updateHistory{
     NSString *newstr = [NSString string];
     if (self.historyArr == nil) {
@@ -74,7 +89,7 @@
         [self.historyArr removeLastObject];
     }
     MBGLog(@"%@",self.historyArr);
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
     [defaults setObject:self.historyArr forKey:@"cliphistory"];
     
 }
@@ -85,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 2;
+    return self.historyArr.count;
    
 }
 
@@ -94,7 +109,7 @@
     
     ClipCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ClipCell"];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    [cell.textLabel setText:@"111"];
+    [cell.textLabel setText:self.historyArr[indexPath.row]];
     [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
     return cell;
 }
@@ -118,4 +133,72 @@
     return header;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    
+    pasteboard.string = self.historyArr[indexPath.row];
+//    [self checkoutClipboard];
+}
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return UITableViewCellEditingStyleDelete;
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+    return YES;
+    
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.historyArr removeObjectAtIndex:indexPath.row];
+        
+        [self.tableview reloadData];
+        
+        
+        if (self.historyArr.count ==0) {
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
+            [defaults setObject:[NSArray array] forKey:@"cliphistory"];
+        }else{
+            
+            NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
+            [defaults setObject:self.historyArr forKey:@"cliphistory"];
+        }
+        
+    }
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.textfeild resignFirstResponder];
+
+}
+-(void)checkoutClipboard{
+    NSString *newstr= [UIPasteboard generalPasteboard].string;
+    
+    MBGLog(@"%@", newstr);
+    
+    if (self.historyArr == nil) {
+        self.historyArr =[[NSMutableArray alloc]init];
+        [self.historyArr addObject:newstr];
+    }else{
+        if ([self.historyArr indexOfObject:newstr]!=NSNotFound) {
+            int i = (int)[self.historyArr indexOfObject:newstr];
+            [self.historyArr exchangeObjectAtIndex:0 withObjectAtIndex:i];
+        }else{
+            [self.historyArr insertObject:newstr atIndex:0];
+        }
+    }
+    if (self.historyArr.count==khiscount) {
+        
+        [self.historyArr removeLastObject];
+    }
+    MBGLog(@"%@",self.historyArr);
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
+    [defaults setObject:self.historyArr forKey:@"cliphistory"];
+    [self.tableview reloadData];
+}
+//-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    [self.textfeild resignFirstResponder];
+//}
 @end
