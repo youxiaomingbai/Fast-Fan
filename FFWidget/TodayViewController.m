@@ -31,11 +31,12 @@
     [self.search addTarget:self action:@selector(deletelastphoto) forControlEvents:UIControlEventTouchUpInside];
     [self.search setTintColor:[UIColor blackColor]];
     [self.view addSubview:self.search];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkoutClipboard) name:UIPasteboardChangedNotification object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
-    [self checkDicwithStr:@"good"];
+    [self checkoutClipboard];
 }
 
 -(void)deletelastphoto{
@@ -51,7 +52,7 @@
     } else {
         self.preferredContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 300);
         [self.deletephoto setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2, 250, [UIScreen mainScreen].bounds.size.width/2, 50)];
-        [self.search setFrame:CGRectMake(0, 60, [UIScreen mainScreen].bounds.size.width/2, 50)];
+        [self.search setFrame:CGRectMake(0, 250, [UIScreen mainScreen].bounds.size.width/2, 50)];
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -110,5 +111,11 @@
         }
     }
     
+}
+
+-(void)checkoutClipboard{
+    NSString *newstr= [UIPasteboard generalPasteboard].string;
+    
+    [self checkDicwithStr:newstr];
 }
 @end
