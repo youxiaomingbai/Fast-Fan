@@ -9,18 +9,23 @@
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 
+#define khiscount  10
+
 
 
 @interface TodayViewController () <NCWidgetProviding>
 @property (nonatomic ,strong)UIButton *deletephoto;
 @property (nonatomic ,strong)UIButton *search;
 @property (nonatomic ,strong)NSArray *transArr;
+@property (nonatomic, strong) NSMutableArray *historyArr;
+
 @end
 
 @implementation TodayViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.deletephoto =[UIButton buttonWithType:UIButtonTypeSystem];
     [_deletephoto setTitle:@"删除图片" forState:UIControlStateNormal];
     [self.deletephoto addTarget:self action:@selector(deletelastphoto) forControlEvents:UIControlEventTouchUpInside];
@@ -31,12 +36,14 @@
     [self.search addTarget:self action:@selector(deletelastphoto) forControlEvents:UIControlEventTouchUpInside];
     [self.search setTintColor:[UIColor blackColor]];
     [self.view addSubview:self.search];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkoutClipboard) name:UIPasteboardChangedNotification object:nil];
+    
+    NSUserDefaults *defaults =[[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
+    self.historyArr  =[[defaults arrayForKey:@"cliphistory"]mutableCopy];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
-    [self checkoutClipboard];
+    [self translation];
 }
 
 -(void)deletelastphoto{
@@ -86,8 +93,6 @@
     if (data) {
         id result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:NULL];
         if ([result isKindOfClass:[NSDictionary class]]) {
-            
-            NSLog(@"%@", result);
             if (result[@"basic"]!=nil) {
                 self.transArr =result[@"basic"][@"explains"];
             }else if (result[@"web"]!=nil){
@@ -96,26 +101,44 @@
                 
             }
             NSLog(@"%@",self.transArr);
-//            youdaoModel *model = [youdaoModel objectWithKeyValues:result];
-//            NSLog(@"%@", model);
-//            NSArray *translation = [NSArray array];
-//            if (model.basic == nil ) {
-//                youdaoWebModel *webmodel = model.web[1];
-//                translation = webmodel.value;
-//            }else{
-//    
-//                translation = model.basic.explains;
-//            }
-//            NSLog(@"%@" ,[translation componentsJoinedByString:@"|"]);
-
         }
     }
     
 }
-
+//翻译主函数
+-(void)translation{
+    NSString *newstr= [UIPasteboard generalPasteboard].string;
+    [self checkoutClipboard];
+    if ([newstr isEqualToString:self.historyArr[0]]&&self.historyArr.count!=0) {
+        
+        [self checkDicwithStr:newstr];
+    }
+}
+//更新剪切板
 -(void)checkoutClipboard{
     NSString *newstr= [UIPasteboard generalPasteboard].string;
     
-    [self checkDicwithStr:newstr];
+//    MBGLog(@"%@", newstr);
+    
+    if (self.historyArr == nil) {
+        self.historyArr =[[NSMutableArray alloc]init];
+        [self.historyArr addObject:newstr];
+    }else{
+        if ([self.historyArr indexOfObject:newstr]!=NSNotFound) {
+            int i = (int)[self.historyArr indexOfObject:newstr];
+            [self.historyArr exchangeObjectAtIndex:0 withObjectAtIndex:i];
+        }else{
+            [self.historyArr insertObject:newstr atIndex:0];
+        }
+    }
+    if (self.historyArr.count==khiscount) {
+        
+        [self.historyArr removeLastObject];
+    }
+//    MBGLog(@"%@",self.historyArr);
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
+    [defaults setObject:self.historyArr forKey:@"cliphistory"];
+//    [self.tableview reloadData];
 }
+
 @end

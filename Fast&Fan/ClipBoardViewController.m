@@ -71,28 +71,7 @@
 -(void)goback{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)updateHistory{
-    NSString *newstr = [NSString string];
-    if (self.historyArr == nil) {
-        self.historyArr =[[NSMutableArray alloc]init];
-        [self.historyArr addObject:newstr];
-    }else{
-        if ([self.historyArr indexOfObject:newstr]!=NSNotFound) {
-            int i = (int)[self.historyArr indexOfObject:newstr];
-            [self.historyArr exchangeObjectAtIndex:0 withObjectAtIndex:i];
-        }else{
-            [self.historyArr insertObject:newstr atIndex:0];
-        }
-    }
-    if (self.historyArr.count==khiscount) {
-        
-        [self.historyArr removeLastObject];
-    }
-    MBGLog(@"%@",self.historyArr);
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.ff"];
-    [defaults setObject:self.historyArr forKey:@"cliphistory"];
-    
-}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 1;
