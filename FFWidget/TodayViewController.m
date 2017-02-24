@@ -14,6 +14,7 @@
 @interface TodayViewController () <NCWidgetProviding>
 @property (nonatomic ,strong)UIButton *deletephoto;
 @property (nonatomic ,strong)UIButton *search;
+@property (nonatomic ,strong)NSArray *transArr;
 @end
 
 @implementation TodayViewController
@@ -86,6 +87,14 @@
         if ([result isKindOfClass:[NSDictionary class]]) {
             
             NSLog(@"%@", result);
+            if (result[@"basic"]!=nil) {
+                self.transArr =result[@"basic"][@"explains"];
+            }else if (result[@"web"]!=nil){
+                self.transArr =result[@"basic"][0][@"value"];
+            }else{
+                
+            }
+            NSLog(@"%@",self.transArr);
 //            youdaoModel *model = [youdaoModel objectWithKeyValues:result];
 //            NSLog(@"%@", model);
 //            NSArray *translation = [NSArray array];
