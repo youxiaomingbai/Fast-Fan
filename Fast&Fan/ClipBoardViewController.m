@@ -28,12 +28,34 @@
     self.view.backgroundColor = BGColor;
     self.tableview.backgroundColor = BGColor;
     [self.tableview registerNib:[UINib nibWithNibName:@"ClipCell" bundle:nil] forCellReuseIdentifier:@"ClipCell"];
+    [self setupNavBar];
+}
+- (void)setupNavBar
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 44)];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont systemFontOfSize:20];
+    label.text = @"ClipBoard";
+    label.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = label;
+    
+    
+    UIButton *goBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    goBackBtn.frame = CGRectMake(0, 0, 40, 40);
+    goBackBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [goBackBtn setImage:[UIImage imageNamed:@"wish_back"] forState:UIControlStateNormal];
+    UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc] initWithCustomView:goBackBtn];
+    [goBackBtn addTarget:self action:@selector(go_back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    negativeSpacer.width = -15;
+    self.navigationItem.leftBarButtonItems = @[negativeSpacer,backBarBtn];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:[UIColor redColor]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 -(void)updateHistory{
     NSString *newstr = [NSString string];
     if (self.historyArr == nil) {

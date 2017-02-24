@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Main Table View Controller-->
         <scene sceneID="gyi-zf-ieD">
             <objects>
                 <tableViewController id="Zld-11-Nd9" customClass="MainTableViewController" sceneMemberID="viewController">
@@ -48,7 +48,7 @@
                             <outlet property="delegate" destination="Zld-11-Nd9" id="AdH-Jo-FKn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Ctd-vo-vDv"/>
+                    <navigationItem key="navigationItem" id="Ctd-vo-vDv"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdF-hc-Sv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

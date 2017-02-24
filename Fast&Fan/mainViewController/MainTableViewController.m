@@ -28,6 +28,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MainTableViewCell" bundle:nil] forCellReuseIdentifier:@"MainTableViewCell"];
     [self.tableView setBackgroundColor:BGColor];
     [self setupNavBar];
+    
+    
 }
 - (void)setupNavBar
 {
