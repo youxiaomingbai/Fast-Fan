@@ -514,7 +514,7 @@
 					};
 					4EC301A41E5D5D9C00C9E6D5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 2Y57ZCT67P;
+						DevelopmentTeam = U4ZFE2TUM4;
 						ProvisioningStyle = Automatic;
 					};
 					4EC301BD1E5D5D9D00C9E6D5 = {
@@ -811,10 +811,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2Y57ZCT67P;
+				DEVELOPMENT_TEAM = U4ZFE2TUM4;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Fast&Fan/PrefixHeader.pch";
 				INFOPLIST_FILE = "Fast&Fan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fast-Fan.Fast-Fan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -825,10 +825,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2Y57ZCT67P;
+				DEVELOPMENT_TEAM = U4ZFE2TUM4;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Fast&Fan/PrefixHeader.pch";
 				INFOPLIST_FILE = "Fast&Fan/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fast-Fan.Fast-Fan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -891,6 +891,7 @@
 				4E1D99621E6019E7006D165B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EC301A01E5D5D9C00C9E6D5 /* Build configuration list for PBXProject "Fast&Fan" */ = {
 			isa = XCConfigurationList;
