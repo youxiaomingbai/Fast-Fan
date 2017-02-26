@@ -8,7 +8,7 @@
 
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
-
+#import <Photos/Photos.h>
 #define khiscount  10
 
 
@@ -47,7 +47,23 @@
 }
 
 -(void)deletelastphoto{
-    
+    PHFetchResult *collectonResuts = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAny options:[PHFetchOptions new]] ;
+    [collectonResuts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        PHAssetCollection *assetCollection = obj;
+        if ([assetCollection.localizedTitle isEqualToString:@"Camera Roll"])  {
+            PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:[PHFetchOptions new]];
+            [assetResult enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    //获取相册的最后一张照片
+                    if (idx == [assetResult count] - 1) {
+                        [PHAssetChangeRequest deleteAssets:@[obj]];
+                    }
+                } completionHandler:^(BOOL success, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                }];
+            }];
+        }
+    }];
 }
 // If implemented, called when the active display mode changes.
 // The widget may wish to change its preferredContentSize to better accommodate the new display mode.
