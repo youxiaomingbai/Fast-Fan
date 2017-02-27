@@ -21,6 +21,10 @@
 		4E1D99D21E602BE2006D165B /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D99C81E602BE2006D165B /* NSObject+MJKeyValue.m */; };
 		4E1D99D31E602BE2006D165B /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D99CA1E602BE2006D165B /* NSObject+MJMember.m */; };
 		4E1D99D61E602BF8006D165B /* youdaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1D99D51E602BF8006D165B /* youdaoModel.m */; };
+		4E60EA1B1E63C5F900A7EA9A /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E60EA1A1E63C5F900A7EA9A /* cancel@2x.png */; };
+		4E60EA1D1E63C60000A7EA9A /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E60EA1C1E63C60000A7EA9A /* cancel@3x.png */; };
+		4E60EA211E63F9C100A7EA9A /* WidgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E60EA1F1E63F9C100A7EA9A /* WidgetTableViewCell.m */; };
+		4E60EA221E63F9C100A7EA9A /* WidgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E60EA201E63F9C100A7EA9A /* WidgetTableViewCell.xib */; };
 		4EC301AA1E5D5D9C00C9E6D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC301A91E5D5D9C00C9E6D5 /* main.m */; };
 		4EC301AD1E5D5D9C00C9E6D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC301AC1E5D5D9C00C9E6D5 /* AppDelegate.m */; };
 		4EC301B31E5D5D9C00C9E6D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC301B11E5D5D9C00C9E6D5 /* Main.storyboard */; };
@@ -112,6 +116,12 @@
 		4E1D99CA1E602BE2006D165B /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
 		4E1D99D41E602BF8006D165B /* youdaoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = youdaoModel.h; sourceTree = "<group>"; };
 		4E1D99D51E602BF8006D165B /* youdaoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = youdaoModel.m; sourceTree = "<group>"; };
+		4E60EA1A1E63C5F900A7EA9A /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		4E60EA1C1E63C60000A7EA9A /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
+		4E60EA1E1E63F9C100A7EA9A /* WidgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetTableViewCell.h; sourceTree = "<group>"; };
+		4E60EA1F1E63F9C100A7EA9A /* WidgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidgetTableViewCell.m; sourceTree = "<group>"; };
+		4E60EA201E63F9C100A7EA9A /* WidgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WidgetTableViewCell.xib; sourceTree = "<group>"; };
+		4E60EA231E640FAC00A7EA9A /* Fast&Fan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fast&Fan.entitlements"; sourceTree = "<group>"; };
 		4EC301A51E5D5D9C00C9E6D5 /* Fast&Fan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast&Fan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC301A91E5D5D9C00C9E6D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4EC301AB1E5D5D9C00C9E6D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -200,8 +210,13 @@
 				4E1D99641E601F10006D165B /* FFWidget.entitlements */,
 				4E1D99561E6019E7006D165B /* TodayViewController.h */,
 				4E1D99571E6019E7006D165B /* TodayViewController.m */,
+				4E60EA1E1E63F9C100A7EA9A /* WidgetTableViewCell.h */,
+				4E60EA1F1E63F9C100A7EA9A /* WidgetTableViewCell.m */,
+				4E60EA201E63F9C100A7EA9A /* WidgetTableViewCell.xib */,
 				4E1D99591E6019E7006D165B /* MainInterface.storyboard */,
 				4E1D995C1E6019E7006D165B /* Info.plist */,
+				4E60EA1A1E63C5F900A7EA9A /* cancel@2x.png */,
+				4E60EA1C1E63C60000A7EA9A /* cancel@3x.png */,
 			);
 			path = FFWidget;
 			sourceTree = "<group>";
@@ -258,6 +273,7 @@
 		4EC301A71E5D5D9C00C9E6D5 /* Fast&Fan */ = {
 			isa = PBXGroup;
 			children = (
+				4E60EA231E640FAC00A7EA9A /* Fast&Fan.entitlements */,
 				4EC302281E5ED07800C9E6D5 /* ClipBoard */,
 				4EC301DE1E5D671C00C9E6D5 /* Mainview */,
 				4EC301AB1E5D5D9C00C9E6D5 /* AppDelegate.h */,
@@ -514,8 +530,13 @@
 					};
 					4EC301A41E5D5D9C00C9E6D5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = U4ZFE2TUM4;
+						DevelopmentTeam = 2Y57ZCT67P;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					4EC301BD1E5D5D9D00C9E6D5 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -555,7 +576,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E60EA1B1E63C5F900A7EA9A /* cancel@2x.png in Resources */,
+				4E60EA1D1E63C60000A7EA9A /* cancel@3x.png in Resources */,
 				4E1D995B1E6019E7006D165B /* MainInterface.storyboard in Resources */,
+				4E60EA221E63F9C100A7EA9A /* WidgetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1D99581E6019E7006D165B /* TodayViewController.m in Sources */,
+				4E60EA211E63F9C100A7EA9A /* WidgetTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +724,7 @@
 				CODE_SIGN_ENTITLEMENTS = FFWidget/FFWidget.entitlements;
 				DEVELOPMENT_TEAM = 2Y57ZCT67P;
 				INFOPLIST_FILE = FFWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fast-Fan.Fast-Fan.FFWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -712,6 +738,7 @@
 				CODE_SIGN_ENTITLEMENTS = FFWidget/FFWidget.entitlements;
 				DEVELOPMENT_TEAM = 2Y57ZCT67P;
 				INFOPLIST_FILE = FFWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fast-Fan.Fast-Fan.FFWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -811,7 +838,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = U4ZFE2TUM4;
+				DEVELOPMENT_TEAM = 2Y57ZCT67P;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Fast&Fan/PrefixHeader.pch";
 				INFOPLIST_FILE = "Fast&Fan/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -825,7 +852,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = U4ZFE2TUM4;
+				DEVELOPMENT_TEAM = 2Y57ZCT67P;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/Fast&Fan/PrefixHeader.pch";
 				INFOPLIST_FILE = "Fast&Fan/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
