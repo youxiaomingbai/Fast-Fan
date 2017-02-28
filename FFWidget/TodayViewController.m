@@ -173,9 +173,8 @@
                                             NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil]);
                                                   id result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:NULL];
                                                   if ([result isKindOfClass:[NSDictionary class]]) {
-                                                      if (result[@"errorCode"]) {
-                                                          return ;
-                                                      }
+                                                      
+                                                      
                                                       if (result[@"basic"]!=nil) {
                                                           self.transArr =result[@"basic"][@"explains"];
                                                       }else if (result[@"web"]!=nil){
@@ -186,7 +185,10 @@
                                                       NSLog(@"%@",self.transArr);
                                                       if (self.transArr.count !=0) {
                                                           
-                                                          [self.transformLabel setText:[self.transArr componentsJoinedByString:@"."]];
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              
+                                                              [self.transformLabel setText:[self.transArr componentsJoinedByString:@"."]];
+                                                          });
                                                       }
                                                   }
                                             }
